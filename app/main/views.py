@@ -10,3 +10,14 @@ from .. import db,photos
 @login_required
 def index():
     return render_template('index.html')
+
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username = uname).first()
+    user_id = current_user.id
+    blog = Blog.query.filter_by(user_id=user_id).all()
+
+    if user is None:
+        abort(404)
+        
+    return render_template("profile/profile.html", user = user, blog=blog)

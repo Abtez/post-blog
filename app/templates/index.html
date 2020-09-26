@@ -1,3 +1,63 @@
 {% extends 'base.html'%}
 
-<h1> WELCOME TO BLOGGER QUOTES</h1>
+{% block content %}
+
+<div class="container">
+
+    <h1 class="teal-text"> WELCOME TO BLOG QUOTES</h1>
+
+    <br>
+
+    <div class="row">
+
+    <div class='col-sm-8 col-md-9 col-lg-10'>
+    <!-- News jumbotron -->
+<div class="jumbotron text-center hoverable p-4">
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-md-4 offset-md-1 mx-3 my-3">
+
+      <!-- Featured image -->
+      <div class="view overlay">
+        <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid" alt="User Profile">
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-md-7 text-md-left ml-3 mt-3">
+
+      <!-- Excerpt -->
+      <a href="#!" class="green-text">
+        <h6 class="h6 pb-1"><i class="fas fa-desktop pr-1"></i> Blog</h6>
+      </a>
+
+      <h4 class="h4 mb-4">Title</h4>
+
+      <p class="font-weight-normal">Blog</p>
+      <p class="font-weight-normal">by <a><strong>Carine Fox</strong></a>, 19/08/2016</p>
+
+      <a class="btn btn-default btn-sm"><i class="far fa-comments fa-2x"></i> <span style='font-size:14px;'>Comments</span></a>
+
+    </div>
+    <!-- Grid column -->
+
+  </div>
+  <!-- Grid row -->
+
+</div>
+<!-- News jumbotron -->
+</div>
+
+</div>
+
+</div>
+
+{% endblock  %}
