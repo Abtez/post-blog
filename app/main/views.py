@@ -38,6 +38,25 @@ def new_blog():
     
     return render_template('blogs.html', form=form)
         
+@main.route('/new_comment/<int:blog_id>', methods=['GET','POST'])
+@login_required
+def new_comment(blog_id):
+    form = CommentForm
+    blogs = Blog.query.get(blog_id)
+    comment = Comment.query.filter_by(blog_id=blog_id).all()
+    form = CommentForm()
+    if form.validate_on_submit():
+        comments = form.comment.data
+        title = form.title.data
+        
+        blog_id = blog_id
+        user_id = current_user._get_current_object().id
+        new_comment= Comment(comments=comments,title=title,blog_id=blog_id, user_id=user_id)
+        new_comment.save_comment()      
+       
+        return redirect(url_for('main.index'))
+    
+    return render_template('comments.html', form=form, comment=comment, blog_id=blog_id)
         
         
     
