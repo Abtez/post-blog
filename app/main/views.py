@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for,abort
+from flask import render_template,request,redirect,url_for,abort,flash
 from . import main
 # from ..request import get_quotes
 from .forms import BlogForm,BioForm, CommentForm
@@ -91,6 +91,16 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+@main.route('/blogs/<int:blog_id>/delete', methods = ['DELETE'])
+@login_required
+def delete(blog_id):
+    blogs = Blog.query.get(blog_id)
+    if blogs.user != current_user:
+        abort(403)
+    blogs.delete()
+    flash("Blog succesfully deleted!")
+    return redirect(url_for('main.index'))
         
         
     

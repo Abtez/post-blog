@@ -8,7 +8,7 @@ def configure_request(app):
     base_url = app.config['QUOTES_API_BASE_URL']
 
 def get_quote():
-    get_quote_url = 'http://quotes.stormconsultancy.co.uk/random.json'
+    get_quote_url = base_url
     
     with urllib.request.urlopen(get_quote_url) as url:
         get_quote_data = url.read()

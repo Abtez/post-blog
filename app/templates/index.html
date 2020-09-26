@@ -6,6 +6,9 @@
 
     <h1 class="teal-text"> WELCOME TO BLOG QUOTES</h1>
 
+      <h2><a class="btn teal-text btn-lg text-center" href="{{url_for('main.new_blog')}}"> Write a blog</a></h2>
+
+
         <div class="card w-75">
         <div class="card-body">
             <h5 class="card-title teal-text" style='text-decoration:underline;'>Random Quotes</h5>
@@ -14,8 +17,6 @@
             <a href="{{ quotes.permalink }}" target='_blank' class="btn btn-teal btn-sm">View Quote</a>
         </div>
         </div>
-
-    <h2><a class="btn teal-gradient btn-lg text-center" href="{{url_for('main.new_blog')}}"> Write a blog</a></h2>
 
     <br>
 
@@ -53,7 +54,7 @@
     <div class="col-md-7 text-md-left ml-3 mt-3">
 
       <!-- Excerpt -->
-      <a href="#!" class="green-text">
+      <a href="#!" class="teal-text">
         <h6 class="h6 pb-1"><i class="fas fa-comment-alt pr-1"></i> Blog</h6>
       </a>
 
