@@ -1,5 +1,4 @@
 {% extends 'base.html'%}
-{% import 'macro.html' as macro%}
 
 {% block content %}
 
@@ -7,7 +6,14 @@
 
     <h1 class="teal-text"> WELCOME TO BLOG QUOTES</h1>
 
-      {{ macro.displayQuotes(quotes)}}
+        <div class="card w-75">
+        <div class="card-body">
+            <h5 class="card-title teal-text" style='text-decoration:underline;'>Random Quotes</h5>
+            <h6 class="card-title teal-text">Author : <cite title="Source Title">{{ quotes.author }}</cite></h6>
+            <p class="card-text note note-info">{{ quotes.quote }}</p>
+            <a href="{{ quotes.permalink }}" target='_blank' class="btn btn-teal btn-sm">View Quote</a>
+        </div>
+        </div>
 
     <h2><a class="btn teal-gradient btn-lg text-center" href="{{url_for('main.new_blog')}}"> Write a blog</a></h2>
 

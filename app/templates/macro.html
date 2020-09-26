@@ -1,14 +1,15 @@
 {% macro displayQuotes(quotes) %}
 
-   {% for items in quotes %}
+   {% if quotes %}
         <div class="card w-75">
         <div class="card-body">
-            <h5 class="card-title">Author : {{ items.author }}</h5>
-            <p class="card-text">{{ items.quote }}</p>
-            <a href="{{ items.link }}" class="btn btn-teal">View Quote</a>
+            <h5 class="card-title teal-text" style='text-decoration:underline;'>Random Quotes</h5>
+            <h6 class="card-title teal-text">Author : <cite title="Source Title">{{ quotes.author }}</cite></h6>
+            <p class="card-text note note-info">{{ quotes.quote }}</p>
+            <a href="{{ quotes.link }}" class="btn btn-teal btn-sm">View Quote</a>
         </div>
         </div>
 
-    {% endfor %}
+    {% endif %}
 
 {% endmacro %}

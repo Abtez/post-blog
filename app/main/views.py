@@ -5,14 +5,16 @@ from .forms import BlogForm,BioForm, CommentForm
 from ..models import Blog,User, Comment
 from flask_login import login_required,current_user
 from .. import db,photos
+from ..request import get_quote
 
 @main.route('/')
 @login_required
 def index():
+    quotes = get_quote()
     blogs = Blog.query.all()
     user_id = current_user.id
     user = User.query.filter_by(id=user_id).all()
-    return render_template('index.html',blogs=blogs, user=user)
+    return render_template('index.html',blogs=blogs, user=user,quotes=quotes)
 
 @main.route('/user/<uname>')
 def profile(uname):
