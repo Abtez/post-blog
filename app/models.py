@@ -17,7 +17,7 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
     blogs = db.relationship('Blog',backref = 'blogger',lazy = "dynamic")
-    comments = db.relationship('Comment',backref = 'review',lazy = "dynamic")
+    comments = db.relationship('Comment',backref = 'comments',lazy = "dynamic")
     
     @property
     def password(self):
@@ -39,12 +39,37 @@ class Blog(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     title = db.Column(db.String(255),nullable=False)
     blog = db.Column(db.String(255),nullable=False)
-    user_id = db.relationship('User')
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    posted = db.Column(db.DateTime,default=datetime.utcnow,onupdate=datetime.utcnow())
+    
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+        
+    @classmethod
+    def get_blog(cls,id):
+        blogs = Blog.query.filter_by(user_id=id).all()
+        return blogs
+
     
 class Comment(db.Model):
-    __tablename__ = 'comments'
+    __tablename__ = 'comments' 
     
-    id = db.Column(db.Integer,primary_key=True)
-    title = db.Column(db.String(255),nullable=False)
-    Comment = db.Column(db.String(),nullable=False)
+    id = db.Column(db.Integer, primary_key = True)
+    comments = db.Column(db.Text(),nullable=False)
+    blog_id = db.Column(db.Integer,db.ForeignKey('blogs.id'))
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+        
+    @classmethod
+    def get_comments(cls,blog_id):
+        comments = Comment.query.filter_by(blog_id=blog_id).all()
+
+        return comments
+        
+    def __repr__(self):
+        return f'Comment{self.comments}'
     
