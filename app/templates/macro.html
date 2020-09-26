@@ -1,0 +1,14 @@
+{% macro displayQuotes(quotes) %}
+
+   {% for items in quotes %}
+        <div class="card w-75">
+        <div class="card-body">
+            <h5 class="card-title">Author : {{ items.author }}</h5>
+            <p class="card-text">{{ items.quote }}</p>
+            <a href="{{ items.link }}" class="btn btn-teal">View Quote</a>
+        </div>
+        </div>
+
+    {% endfor %}
+
+{% endmacro %}

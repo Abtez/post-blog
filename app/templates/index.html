@@ -1,10 +1,13 @@
 {% extends 'base.html'%}
+{% import 'macro.html' as macro%}
 
 {% block content %}
 
 <div class="container">
 
     <h1 class="teal-text"> WELCOME TO BLOG QUOTES</h1>
+
+      {{ macro.displayQuotes(quotes)}}
 
     <h2><a class="btn teal-gradient btn-lg text-center" href="{{url_for('main.new_blog')}}"> Write a blog</a></h2>
 
