@@ -33,3 +33,18 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
     
+class Blog(db.Model):
+    __tablename__ = 'blogs'
+    
+    id = db.Column(db.Integer,primary_key=True)
+    title = db.Column(db.String(255),nullable=False)
+    blog = db.Column(db.String(255),nullable=False)
+    user_id = db.relationship('User')
+    
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    
+    id = db.Column(db.Integer,primary_key=True)
+    title = db.Column(db.String(255),nullable=False)
+    Comment = db.Column(db.String(),nullable=False)
+    

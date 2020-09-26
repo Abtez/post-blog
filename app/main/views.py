@@ -6,3 +6,8 @@ from ..models import Blog,User, Comments
 from flask_login import login_required,current_user
 from .. import db,photos
 import markdown2
+
+@main.route('/')
+@login_required
+def index():
+    return render_template('index.html')
