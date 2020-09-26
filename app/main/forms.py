@@ -13,5 +13,5 @@ class CommentForm(FlaskForm):
     submit = SubmitField('submit')
     
 class BioForm(FlaskForm):
-    bio = TextAreaField('Short bio about you...',validators = [Required()])
+    bio = TextAreaField('Write A Short Bio About You...')
     submit = SubmitField('Submit')

@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<br>
+
 <div class="container">
 
 <!-- News jumbotron -->
@@ -37,8 +39,8 @@
     <div class="col-md-7 text-md-left ml-3 mt-3">
 
       <!-- Excerpt -->
-      <a href="#!" class="green-text">
-        <h3 class="h6 pb-1"><i class="fas fa-user-cog"></i> {{user.username| capitalize}} </h3>
+      <a href="#!" class="teal-text">
+        <h2 class="h6 pb-1"><i class="fas fa-user-cog"></i> {{user.username| capitalize}} </h2>
       </a>
 
       <h4 class="h4 mb-4" style='text-decoration:underline;'>My Bio...</h4>
@@ -51,10 +53,8 @@
 
        {% endif %}
 
-      <p class="font-weight-normal"><a><strong>Last Edit :</strong></a> 19/08/2016</p>
-
       <a href="{{url_for('main.update_bio',uname=user.username)}}" class="btn btn-success">Edit Bio</a>
-      <a href="{{url_for('main.update_profile',uname=user.username)}}" class="btn btn-success">New Pitch</a>
+      <a href="{{url_for('main.new_blog',uname=user.username)}}" class="btn btn-success">New Blog</a>
      
       {% if user == current_user %}
         <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
@@ -73,11 +73,11 @@
 
 <h2 class='amber-text' style='text-decoration:underline;'>My Blogs</h2>
  {% if current_user %}
-{% for items in blogs[::-1] %}
+{% for items in blog[::-1] %}
 
 <div class="container">
   <div class='row'>
-  <div class='col-sm-9 col-md-9 col-lg-9'>
+  <div class='col-sm-9 col-md-10 col-lg-10'>
   
 <!-- Card -->
 <div class="card card-cascade wider">
@@ -86,20 +86,19 @@
   <div class="view view-cascade gradient-card-header peach-gradient">
 
     <!-- Title -->
-    <h2 class="card-header-title text-center mb-3">{{items.blogger.username| capitalize}}</h2>
+    <h2 class="card-header-title mb-3 ml-3">{{items.title| capitalize}}</h2>
     <!-- Text -->
-    <p class="text-center mb-0"><i class="fas fa-calendar mr-2"></i>{{items.posted.strftime('%Y-%m-%d')}}</p>
-    <p class="text-center mb-0"><i class="fas fa-list mr-2"></i>{{items.title}}</p>
+    <p class="mb-0 ml-3"><i class="fas fa-calendar mr-2"></i>{{items.posted.strftime('%Y-%m-%d')}}</p>
 
   </div>
 
   <!-- Card content -->
-  <div class="card-body card-body-cascade text-center">
+  <div class="card-body card-body-cascade">
 
     <!-- Text -->
-    <h4 class="card-text text-dark">{{items.blog}}</h4>
+    <h5 class="text-dark ml-1">{{items.blog}}</h5>
     <!-- Link -->
-    <a href="{{url_for('main.new_comment', pitch_id = items.id)}}" class="orange-text d-flex flex-row-reverse p-2">
+    <a href="{{url_for('main.new_comment', blog_id = items.id)}}" class="orange-text d-flex flex-row-reverse p-2">
       <h5 class="waves-effect waves-light">Comments<i class="far fa-comments ml-2"></i></h5>
     </a>
 

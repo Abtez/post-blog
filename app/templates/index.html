@@ -26,7 +26,12 @@
 
       <!-- Featured image -->
       <div class="view overlay">
+      {% if user.id %}
+        <img src="{{url_for('static',filename=user.profile_pic_path)}}" class="img-fluid" alt="User Profile">
+
+        {% else %}
         <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid" alt="User Profile">
+        {% endif %}
         <a>
           <div class="mask rgba-white-slight"></div>
         </a>

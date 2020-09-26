@@ -10,7 +10,9 @@ from .. import db,photos
 @login_required
 def index():
     blogs = Blog.query.all()
-    return render_template('index.html',blogs=blogs)
+    user_id = current_user.id
+    user = User.query.filter_by(id=user_id).all()
+    return render_template('index.html',blogs=blogs, user=user)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -21,7 +23,7 @@ def profile(uname):
     if user is None:
         abort(404)
         
-    return render_template("profile/profile.html", user = user, blog=blog)
+    return render_template("profile/profile.html", user=user, blog=blog)
 
 @main.route('/new_blog', methods=['GET','POST'])
 @login_required
