@@ -3,6 +3,8 @@
 
 {% block content %}
 <div class="container">
+<h2 style='text-decoration:underline;'>{{ legend }}</h2>
+<hr>
   {{wtf.quick_form(form)}}
   {{simplemde.load}}
 </div>

@@ -36,12 +36,8 @@
 
       <!-- Featured image -->
       <div class="view overlay">
-      {% if user.id %}
-        <img src="{{url_for('static',filename=user.profile_pic_path)}}" class="img-fluid" alt="User Profile">
+        <img src="{{url_for('static',filename=items.blogger.profile_pic_path)}}" class="img-fluid" alt="User Profile">
 
-        {% else %}
-        <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid" alt="User Profile">
-        {% endif %}
         <a>
           <div class="mask rgba-white-slight"></div>
         </a>
@@ -64,6 +60,8 @@
       <p class="font-weight-normal">by <a><strong>{{ items.blogger.username }}</strong></a>, {{ items.posted.strftime('%d-%m-%Y') }}</p>
 
       <a href='{{url_for('main.new_comment', blog_id = items.id)}}' class="btn btn-default btn-sm"><i class="far fa-comments fa-2x"></i> <span style='font-size:14px;'>Comments</span></a>
+      <a href='{{url_for('main.delete', blog_id = items.id)}}' class="btn btn-default btn-sm"><i class="fas fa-trash-alt fa-2x"></i> <span style='font-size:14px;'>Delete Post</span></a>
+      <a href='{{url_for('main.update_blog', blog_id = items.id)}}' class="btn btn-default btn-sm"><i class="fas fa-trash-alt fa-2x"></i> <span style='font-size:14px;'>Update Post</span></a>
 
     </div>
     <!-- Grid column -->
