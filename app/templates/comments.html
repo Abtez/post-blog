@@ -13,22 +13,26 @@
 
  <h2 class='text-center teal-text' style='text-decoration:underline;'>Comments</h2>
 
-{% for items in comment %}
+{% for items in comment[::-1] %}
 
 <div class="row">
   <div class='col-sm-8 col-md-9 col-lg-10'>
 
 <div class="card">
   <div class="card-body">
-    <blockquote class="blockquote mb-0">
+    <blockquote class="blockquote bq-success mb-0">
      <h5 class='teal-text' style='text-decoration:underline;'>{{items.title}}</h5>
      <hr>
       <p>{{items.comments}}</p>
       <footer class="blockquote-footer">Posted By : <cite title="Source Title">{{items.feedback.username}}</cite></footer>
+
+      {% if current_user == blogs.blogger %}
+      <form action="{{url_for('main.delete_comment', comment_id = items.id)}}" method='POST'>
+      <input class='btn btn-danger btn-sm' type='submit' value='Delete Comment'>
+      </form>
+      {% endif %}
     </blockquote>
   </div>
-</div>
-
 </div>
 
 <hr>

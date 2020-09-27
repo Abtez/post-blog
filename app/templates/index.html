@@ -24,7 +24,7 @@
 
     <div class="row">
 
-    <div class='col-sm-8 col-md-9 col-lg-10'>
+    <div class='col-sm-9 col-md-10 col-lg-11'>
     <!-- News jumbotron -->
 <div class="jumbotron text-center hoverable p-4">
 
@@ -63,8 +63,9 @@
 
     {% if items.blogger == current_user %}
 
-      <a href='' data-toggle="modal" data-target="#deleteModalCenter" class="btn btn-default btn-sm"><i class="fas fa-trash-alt fa-2x"></i> <span style='font-size:14px;'>Delete Post</span></a>
-      <a href='{{url_for('main.update_blog', blog_id = items.id)}}' class="btn btn-default btn-sm"><i class="fas fa-trash-alt fa-2x"></i> <span style='font-size:14px;'>Update Post</span></a>
+      <a href='{{url_for('main.update_blog', blog_id = items.id)}}' class="btn btn-default btn-sm"><span style='font-size:14px;'>Update</span></a>
+
+      <a href='' data-toggle="modal" data-target="#deleteModalCenter" class="btn btn-default btn-sm"><i class="fas fa-trash-alt fa-2x"></i> <span style='font-size:14px;'>Delete</span></a>
    
     {% endif %}
 

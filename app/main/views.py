@@ -11,9 +11,7 @@ from ..request import get_quote
 def index():
     quotes = get_quote()
     blogs = Blog.query.all()
-    user_id = current_user.id
-    user = User.query.filter_by(id=user_id).all()
-    return render_template('index.html',blogs=blogs, user=user,quotes=quotes)
+    return render_template('index.html',blogs=blogs, quotes=quotes)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -41,7 +39,7 @@ def new_blog():
     
     return render_template('blogs.html', form=form,legend='New Post')
         
-@main.route('/new_comment/<int:blog_id>', methods=['GET','POST'])
+@main.route('/comments/<int:blog_id>', methods=['GET','POST'])
 @login_required
 def new_comment(blog_id):
     form = CommentForm
@@ -57,9 +55,9 @@ def new_comment(blog_id):
         new_comment= Comment(comments=comments,title=title,blog_id=blog_id, user_id=user_id)
         new_comment.save_comment()      
        
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.new_comment', blog_id=blog_id))
     
-    return render_template('comments.html', form=form, comment=comment, blog_id=blog_id)
+    return render_template('comments.html', form=form, comment=comment, blog_id=blog_id,blogs=blogs)
 
 @main.route('/user/<uname>/bio',methods = ['GET','POST'])
 @login_required
@@ -126,6 +124,19 @@ def update_blog(blog_id):
         form.blog.data = blog.blog
         
     return render_template('blogs.html', form = form, legend='Update Post')
+
+@main.route('/comments/<int:comment_id>/delete', methods = ['POST'])
+@login_required
+def delete_comment(comment_id):
+    quotes = get_quote()
+    comment = Comment.query.all()
+    coment = Comment.query.get(comment_id)
+    if coment.feedback != current_user:
+        abort(403)
+    
+    Comment.delete_comment(coment)
+    
+    return redirect(url_for('.index',quotes=quotes, comment=comment, coment=coment))
         
    
         
