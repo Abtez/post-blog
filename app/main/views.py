@@ -8,12 +8,14 @@ from .. import db,photos
 from ..request import get_quote
 
 @main.route('/')
+@login_required
 def index():
     quotes = get_quote()
     blogs = Blog.query.all()
     return render_template('index.html',blogs=blogs, quotes=quotes)
 
 @main.route('/user/<uname>')
+@login_required
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
     user_id = current_user.id
