@@ -36,7 +36,13 @@
 
       <!-- Featured image -->
       <div class="view overlay">
+         {% if items.blogger.profile_pic_path %}
         <img src="{{url_for('static',filename=items.blogger.profile_pic_path)}}" class="img-fluid" alt="User Profile">
+      {%else%}
+
+      <img src="{{url_for('static',filename='photos/avatar2.png')}}" class="img-fluid" alt="User Profile">
+
+        {% endif %}
 
         <a>
           <div class="mask rgba-white-slight"></div>
