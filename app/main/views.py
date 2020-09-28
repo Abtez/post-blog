@@ -137,6 +137,12 @@ def delete_comment(comment_id):
     Comment.delete_comment(coment)
     
     return redirect(url_for('.index',quotes=quotes, comment=comment, coment=coment))
+
+@main.route('/subscribe',methods = ['POST','GET'])
+def subscribe():
+       
+    return render_template('subscribe.html')
+
         
    
         
