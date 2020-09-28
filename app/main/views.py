@@ -6,6 +6,12 @@ from ..models import Blog,User, Comment
 from flask_login import login_required,current_user
 from .. import db,photos
 from ..request import get_quote
+from werkzeug.contrib.atom import AtomFeed
+from urllib.parse import urljoin
+
+def get_abs_url(url):
+    """ Returns absolute url by joining post url with base url """
+    return urljoin(request.url_root, url)
 
 @main.route('/')
 @login_required
@@ -144,6 +150,24 @@ def delete_comment(comment_id):
 def subscribe():
        
     return render_template('subscribe.html')
+   
+@main.route('/feeds')
+def feeds():
+    feed = AtomFeed(title='Latest Posts from My Blog',
+                    feed_url=request.url, url=request.url_root)
+
+    # Sort post by created date
+    blogs = Blog.query.all()
+
+    for post in blogs:
+        feed.add(post.title, post.posted,
+                 content_type='html',
+                 id = post.id,
+                 author= post.blogger.username,
+                 published=post.posted,
+                 updated=post.posted)
+
+    return feed.get_response()
 
         
    
