@@ -38,7 +38,7 @@ This web app allows users to sign in or subscribe, view blogs and comment on dif
 
 ## Live Link
 
-Or you can access the web application directly via this [LIVE LINK]().
+Or you can access the web application directly via this [LIVE LINK](https://blog-quotes.herokuapp.com/).
 
 ******
 
