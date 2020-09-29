@@ -20,7 +20,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         
-        mail_message("Welcome to watchlist","email/welcome_user",user.email,user=user)
+        mail_message("Welcome to Blog Quotes","email/welcome_user",user.email,user=user)
         
         flash('Account Successfully created')
         
